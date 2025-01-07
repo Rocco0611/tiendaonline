@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stendhal</title>
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- AOS para animaciones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link rel="icon" href="../static/logo.jpg" type="image/png">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #dcdcdc; /* Gris más oscuro */
+            color: #333333; /* Gris oscuro */
+            margin: 0;
+            padding: 0;
+        }
+        /* Barra de navegación */
+        .navbar {
+            background-color: #000; /* Fondo negro */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: #333; /* Fondo gris oscuro cuando se hace scroll */
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+        /* Carrusel */
+        .carousel-inner img {
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            background-color: #000;
+        }
+        /* Estilo de las tarjetas */
+        .card {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            background-color: #fff; /* Fondo blanco para las tarjetas */
+        }
+        .card-body {
+            background-color: #f5f5f5; /* Fondo gris claro */
+            border-radius: 0 0 15px 15px;
+        }
+        .card-title, .card-text {
+            color: #333333; /* Gris oscuro */
+        }
+        .btn-lg {
+            background-color: #000; /* Fondo negro para el botón */
+            color: white;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-lg:hover {
+            background-color: #333; /* Gris oscuro cuando el botón está en hover */
+            color: #fff;
+        }
+        .section-title {
+            color: #000; /* Negro para los títulos de sección */
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .carousel-control-prev, .carousel-control-next {
+            z-index: 10;
+        }
+        .carousel-item {
+            transition: transform 1s ease;
+        }
+        .card img {
+            border-radius: 12px;
+        }
+        /* Efecto Hover en imagen */
+        .card-img-top {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .card-img-top:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+        /* Botón cargar más productos */
+        .btn-lg {
+            background-color: #000; /* Fondo negro para el botón */
+            color: white;
+            border-radius: 25px; /* Botón redondeado */
+        }
+        /* Testimonios */
+        .card-body p {
+            color: #333333; /* Gris oscuro para el texto del testimonio */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Stendhal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="registro.html">Registrarse</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorías
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Hombres</a></li>
+                            <li><a class="dropdown-item" href="#">Mujeres</a></li>
+                            <li><a class="dropdown-item" href="#">Accesorios</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Productos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrusel de imágenes -->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../static/im1.jpg" class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+                <img src="../static/im2.jpg" class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+                <img src="../static/img3.jpg" class="d-block w-100" alt="Imagen 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Sección de productos -->
+    <div class="container my-5">
+        <h2 class="text-center section-title">Nuestros Productos</h2>
+        <div class="row">
+            <!-- Producto 1 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+                <div class="card">
+                    <img src="../static/im1.jpg" class="card-img-top" alt="Producto 1" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto 1</h5>
+                        <p class="card-text">Este es un producto increíble de alta calidad.</p>
+                        <p class="card-text">$100</p>
+                        <a href="#" class="btn btn-lg">Añadir al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Producto 2 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+                <div class="card">
+                    <img src="../static/im2.jpg" class="card-img-top" alt="Producto 2" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto 2</h5>
+                        <p class="card-text">Un producto único para darle un toque especial a tu hogar.</p>
+                        <p class="card-text">$150</p>
+                        <a href="#" class="btn btn-lg">Añadir al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Producto 3 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+                <div class="card">
+                    <img src="../static/img3.jpg" class="card-img-top" alt="Producto 3" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto 3</h5>
+                        <p class="card-text">Ideal para regalar a tus seres queridos.</p>
+                        <p class="card-text">$200</p>
+                        <a href="#" class="btn btn-lg">Añadir al carrito</a>
+                    </div>
+                </div>
+            </div>
+             <!-- Producto 1 -->
+             <div class="col-md-4 mb-4" data-aos="fade-up">
+                <div class="card">
+                    <img src="../static/im1.jpg" class="card-img-top" alt="Producto 1" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto 1</h5>
+                        <p class="card-text">Este es un producto increíble de alta calidad.</p>
+                        <p class="card-text">$100</p>
+                        <a href="#" class="btn btn-lg">Añadir al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Producto 2 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+                <div class="card">
+                    <img src="../static/im2.jpg" class="card-img-top" alt="Producto 2" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto 2</h5>
+                        <p class="card-text">Un producto único para darle un toque especial a tu hogar.</p>
+                        <p class="card-text">$150</p>
+                        <a href="#" class="btn btn-lg">Añadir al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Producto 3 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up">
+                <div class="card">
+                    <img src="../static/img3.jpg" class="card-img-top" alt="Producto 3" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto 3</h5>
+                        <p class="card-text">Ideal para regalar a tus seres queridos.</p>
+                        <p class="card-text">$200</p>
+                        <a href="#" class="btn btn-lg">Añadir al carrito</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Botón Cargar más productos -->
+        <div class="text-center my-4">
+            <button class="btn btn-lg" onclick="loadMoreProducts()">Cargar más productos</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS (Animaciones al hacer scroll)
+        AOS.init();
+    </script>
+</body>
+</html>
+
